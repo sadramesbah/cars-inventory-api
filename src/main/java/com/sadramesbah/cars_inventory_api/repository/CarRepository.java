@@ -32,5 +32,4 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     List<Car> findByModelAndPriceRange (String model, double minPrice, double maxPrice);
 
     List<Car> findByMakeAndModelAndPriceRange (String make, String model, double minPrice, double maxPrice);
-
 }
