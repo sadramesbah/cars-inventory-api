@@ -209,5 +209,30 @@ public class CarService {
       throw new RuntimeException(errorMessage);
     }
   }
-  
+
+  public Car updateCar(Car car) {
+    try {
+      // JpaRepository handles update situation in case input id already exists
+      return carRepository.save(car);
+
+    } catch (Exception e) {
+      String errorMessage = String.format(
+          "Failed to update car with ID: %d, Make: %s, Model: %s, VIN: %s. Error: %s",
+          car.getId(), car.getMake(), car.getModel(), car.getVin(), e.getMessage());
+      logger.error(errorMessage);
+      throw new RuntimeException(errorMessage);
+    }
+  }
+
+  public void deleteCar(Long id) {
+    try {
+      carRepository.deleteById(id);
+
+    } catch (Exception e) {
+      String errorMessage = String.format("Failed to delete car by ID: %d. Error: %s", id,
+          e.getMessage());
+      logger.error(errorMessage);
+      throw new RuntimeException(errorMessage);
+    }
+  }
 }
