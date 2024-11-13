@@ -210,30 +210,48 @@ public class CarService {
     }
   }
 
-  public Car updateCar(Car car) {
+  public Optional<Car> updateCar(Long id, Car car) {
     try {
-      Optional<Car> existingCar = carRepository.findById(car.getId());
+      Optional<Car> existingCar = carRepository.findById(id);
       if (existingCar.isPresent()) {
-        return carRepository.save(car);
+        Car carToUpdate = existingCar.get();
+        carToUpdate.setVin(car.getVin());
+        carToUpdate.setMake(car.getMake());
+        carToUpdate.setModel(car.getModel());
+        carToUpdate.setYear(car.getYear());
+        carToUpdate.setColor(car.getColor());
+        carToUpdate.setMileage(car.getMileage());
+        carToUpdate.setPrice(car.getPrice());
+        return Optional.of(carRepository.save(carToUpdate));
 
       } else {
-        String errorMessage = String.format("Car with ID: %d does not exist. Update operation aborted.", car.getId());
+        String errorMessage = String.format(
+            "Car with ID: %d does not exist. Update operation aborted.", id);
         logger.warn(errorMessage);
-        throw new RuntimeException(errorMessage);
+        return Optional.empty();
       }
 
     } catch (Exception e) {
       String errorMessage = String.format(
           "Failed to update car with ID: %d, Make: %s, Model: %s, VIN: %s. Error: %s",
-          car.getId(), car.getMake(), car.getModel(), car.getVin(), e.getMessage());
+          id, car.getMake(), car.getModel(), car.getVin(), e.getMessage());
       logger.error(errorMessage);
       throw new RuntimeException(errorMessage);
     }
   }
 
-  public void deleteCar(Long id) {
+  public boolean deleteCar(Long id) {
     try {
-      carRepository.deleteById(id);
+      if (carRepository.existsById(id)) {
+        carRepository.deleteById(id);
+        return true;
+
+      } else {
+        String errorMessage = String.format("Car with ID: %d does not exist. Deletion aborted.",
+            id);
+        logger.warn(errorMessage);
+        return false;
+      }
 
     } catch (Exception e) {
       String errorMessage = String.format("Failed to delete car by ID: %d. Error: %s", id,
@@ -242,4 +260,5 @@ public class CarService {
       throw new RuntimeException(errorMessage);
     }
   }
+
 }
