@@ -1,6 +1,9 @@
 package com.sadramesbah.cars_inventory_api.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
@@ -8,6 +11,8 @@ import jakarta.persistence.Column;
 @Table(name = "cars")
 public class Car {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "car_id", nullable = false, unique = true)
   private Long id;
 
@@ -38,9 +43,8 @@ public class Car {
   }
 
   // Parameterized constructor
-  public Car(Long id, String vin, String make, String model, int year, String color, int mileage,
+  public Car(String vin, String make, String model, int year, String color, int mileage,
       double price) {
-    this.id = id;
     this.vin = vin;
     this.make = make;
     this.model = model;
