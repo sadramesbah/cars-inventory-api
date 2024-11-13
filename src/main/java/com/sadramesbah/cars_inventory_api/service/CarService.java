@@ -212,8 +212,15 @@ public class CarService {
 
   public Car updateCar(Car car) {
     try {
-      // JpaRepository handles update situation in case input id already exists
-      return carRepository.save(car);
+      Optional<Car> existingCar = carRepository.findById(car.getId());
+      if (existingCar.isPresent()) {
+        return carRepository.save(car);
+
+      } else {
+        String errorMessage = String.format("Car with ID: %d does not exist. Update operation aborted.", car.getId());
+        logger.warn(errorMessage);
+        throw new RuntimeException(errorMessage);
+      }
 
     } catch (Exception e) {
       String errorMessage = String.format(
