@@ -35,14 +35,10 @@ public class CarController {
 
   // Retrieves car by ID
   @GetMapping("/car/{carId}")
-  public ResponseEntity<?> retrieveCarById(@PathVariable Long id) {
-    Optional<Car> carOptional = carService.retrieveCarById(id);
-    if (carOptional.isPresent()) {
-      return ResponseEntity.ok(carOptional.get());
-    } else {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND)
-          .body(String.format("Car with ID: %d not found.", id));
-    }
+  public ResponseEntity<Car> retrieveCarById(@PathVariable Long carId) {
+    Optional<Car> carOptional = carService.retrieveCarById(carId);
+    return carOptional.map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
   }
 
   // Retrieves all cars
@@ -52,31 +48,26 @@ public class CarController {
     return ResponseEntity.ok(cars);
   }
 
-  // Updates the info of an existing car
+  // Updates details of an existing car
   @PutMapping(path = "/car/{carId}")
-  public ResponseEntity<String> updateCar(@PathVariable Long id, @RequestBody Car car) {
-    Optional<Car> updatedCarOptional = carService.updateCar(id, car);
-    if (updatedCarOptional.isPresent()) {
-      return ResponseEntity.ok(String.format("Car with ID: %d is updated successfully", id));
-    } else {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND)
-          .body(String.format(
-              "Failed to update car with ID: %d. Car does not exist or an internal error occurred.",
-              id));
-    }
+  public ResponseEntity<Car> updateCar(@PathVariable Long carId, @RequestBody Car car) {
+    Optional<Car> updatedCarOptional = carService.updateCar(carId, car);
+    return updatedCarOptional.map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
   }
 
   // Deletes a car by ID
   @DeleteMapping("/car/{carId}")
-  public ResponseEntity<String> deleteCar(@PathVariable Long id) {
-    boolean isDeleted = carService.deleteCar(id);
+  public ResponseEntity<String> deleteCar(@PathVariable Long carId) {
+    boolean isDeleted = carService.deleteCar(carId);
     if (isDeleted) {
-      return ResponseEntity.ok(String.format("Car with ID: %d has been deleted successfully", id));
+      return ResponseEntity.ok(
+          String.format("Car with ID: %d has been deleted successfully", carId));
     } else {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(String.format(
               "Failed to delete car with ID: %d. Car does not exist or an internal error occurred.",
-              id));
+              carId));
     }
   }
 }
