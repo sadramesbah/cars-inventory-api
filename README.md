@@ -25,7 +25,12 @@ including searching for cars based on various criteria.
    ```
 
 Make sure to update database configuration in `application.properties` for your environment.
-
+```markdown
+spring.datasource.url=jdbc:mysql://localhost:3306/{database_name}
+spring.datasource.username={username}
+spring.datasource.password={password}
+spring.jpa.hibernate.ddl-auto=create-drop
+```
 
 ## API Endpoints
 
