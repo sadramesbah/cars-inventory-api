@@ -31,6 +31,19 @@ spring.datasource.username={username}
 spring.datasource.password={password}
 spring.jpa.hibernate.ddl-auto=create-drop
 ```
+Use below SQL to create the table
+```markdown
+CREATE TABLE cars (
+    car_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    car_vin VARCHAR(17) NOT NULL,
+    car_make VARCHAR(50) NOT NULL,
+    car_model VARCHAR(50) NOT NULL,
+    car_year INT NOT NULL,
+    car_color VARCHAR(20) NOT NULL,
+    car_mileage INT NOT NULL,
+    car_price DECIMAL(10, 2) NOT NULL
+);
+```
 
 ## API Endpoints
 
@@ -59,7 +72,7 @@ spring.jpa.hibernate.ddl-auto=create-drop
 
 - **Update a car**
     - `PUT /api/v1/car/{carId}`
-    - Request Body: Same as the create request body
+    - Request Body: same as the create request body
 
 
 - **Delete a car**
