@@ -19,22 +19,22 @@ public class Car {
   @Column(name = "car_vin", length = 17, nullable = false)
   private String vin;
 
-  @Column(length = 50, nullable = false)
+  @Column(name = "car_make", length = 50, nullable = false)
   private String make;
 
-  @Column(length = 50, nullable = false)
+  @Column(name = "car_model", length = 50, nullable = false)
   private String model;
 
-  @Column(length = 4, nullable = false)
+  @Column(name = "car_year", length = 4, nullable = false)
   private int year;
 
-  @Column(length = 20, nullable = false)
+  @Column(name = "car_color", length = 20, nullable = false)
   private String color;
 
-  @Column(length = 6, nullable = false)
+  @Column(name = "car_mileage", length = 6, nullable = false)
   private int mileage;
 
-  @Column(precision = 10, scale = 2, nullable = false)
+  @Column(name = "car_price", precision = 10, scale = 2, nullable = false)
   private double price;
 
 
