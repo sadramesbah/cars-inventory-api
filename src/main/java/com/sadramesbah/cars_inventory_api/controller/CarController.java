@@ -1,5 +1,6 @@
 package com.sadramesbah.cars_inventory_api.controller;
 
+import java.math.BigDecimal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -101,17 +102,17 @@ public class CarController {
 
   // Retrieves cars by price range
   @GetMapping("/cars/price/{minPrice}/{maxPrice}")
-  public ResponseEntity<List<Car>> retrieveCarsByPriceRange(@PathVariable double minPrice,
-      @PathVariable double maxPrice) {
-    List<Car> cars = carService.retrieveCarsByPriceRange(minPrice, maxPrice);
+  public ResponseEntity<List<Car>> retrieveCarsByPriceBetween(@PathVariable BigDecimal minPrice,
+      @PathVariable BigDecimal maxPrice) {
+    List<Car> cars = carService.retrieveCarsByPriceBetween(minPrice, maxPrice);
     return ResponseEntity.ok(cars);
   }
 
   // Retrieves cars by mileage range
   @GetMapping("/cars/mileage/{minMileage}/{maxMileage}")
-  public ResponseEntity<List<Car>> retrieveCarsByMileageRange(@PathVariable int minMileage,
+  public ResponseEntity<List<Car>> retrieveCarsByMileageBetween(@PathVariable int minMileage,
       @PathVariable int maxMileage) {
-    List<Car> cars = carService.retrieveCarsByMileageRange(minMileage, maxMileage);
+    List<Car> cars = carService.retrieveCarsByMileageBetween(minMileage, maxMileage);
     return ResponseEntity.ok(cars);
   }
 
@@ -141,25 +142,26 @@ public class CarController {
 
   // Retrieves cars by make and price range
   @GetMapping("/cars/make/{make}/price/{minPrice}/{maxPrice}")
-  public ResponseEntity<List<Car>> retrieveCarsByMakeAndPriceRange(@PathVariable String make,
-      @PathVariable double minPrice, @PathVariable double maxPrice) {
-    List<Car> cars = carService.retrieveCarsByMakeAndPriceRange(make, minPrice, maxPrice);
+  public ResponseEntity<List<Car>> retrieveCarsByMakeAndPriceBetween(@PathVariable String make,
+      @PathVariable BigDecimal minPrice, @PathVariable BigDecimal maxPrice) {
+    List<Car> cars = carService.retrieveCarsByMakeAndPriceBetween(make, minPrice, maxPrice);
     return ResponseEntity.ok(cars);
   }
 
   // Retrieves cars by model and price range
   @GetMapping("/cars/model/{model}/price/{minPrice}/{maxPrice}")
-  public ResponseEntity<List<Car>> retrieveCarsByModelAndPriceRange(@PathVariable String model,
-      @PathVariable double minPrice, @PathVariable double maxPrice) {
-    List<Car> cars = carService.retrieveCarsByModelAndPriceRange(model, minPrice, maxPrice);
+  public ResponseEntity<List<Car>> retrieveCarsByModelAndPriceBetween(@PathVariable String model,
+      @PathVariable BigDecimal minPrice, @PathVariable BigDecimal maxPrice) {
+    List<Car> cars = carService.retrieveCarsByModelAndPriceBetween(model, minPrice, maxPrice);
     return ResponseEntity.ok(cars);
   }
 
   // Retrieves cars by make, model, and price range
   @GetMapping("/cars/make/{make}/model/{model}/price/{minPrice}/{maxPrice}")
-  public ResponseEntity<List<Car>> retrieveCarsByMakeModelAndPriceRange(@PathVariable String make,
-      @PathVariable String model, @PathVariable double minPrice, @PathVariable double maxPrice) {
-    List<Car> cars = carService.retrieveCarsByMakeModelAndPriceRange(make, model, minPrice,
+  public ResponseEntity<List<Car>> retrieveCarsByMakeModelAndPriceBetween(@PathVariable String make,
+      @PathVariable String model, @PathVariable BigDecimal minPrice,
+      @PathVariable BigDecimal maxPrice) {
+    List<Car> cars = carService.retrieveCarsByMakeModelAndPriceBetween(make, model, minPrice,
         maxPrice);
     return ResponseEntity.ok(cars);
   }

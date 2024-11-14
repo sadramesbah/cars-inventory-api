@@ -2,6 +2,7 @@ package com.sadramesbah.cars_inventory_api.service;
 
 import com.sadramesbah.cars_inventory_api.repository.CarRepository;
 import com.sadramesbah.cars_inventory_api.entity.Car;
+import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -104,9 +105,9 @@ public class CarService {
     }
   }
 
-  public List<Car> retrieveCarsByPriceRange(double minPrice, double maxPrice) {
+  public List<Car> retrieveCarsByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice) {
     try {
-      return carRepository.findByPriceRange(minPrice, maxPrice);
+      return carRepository.findByPriceBetween(minPrice, maxPrice);
 
     } catch (Exception e) {
       String errorMessage = String.format(
@@ -117,9 +118,9 @@ public class CarService {
     }
   }
 
-  public List<Car> retrieveCarsByMileageRange(int minMileage, int maxMileage) {
+  public List<Car> retrieveCarsByMileageBetween(int minMileage, int maxMileage) {
     try {
-      return carRepository.findByMileageRange(minMileage, maxMileage);
+      return carRepository.findByMileageBetween(minMileage, maxMileage);
 
     } catch (Exception e) {
       String errorMessage = String.format(
@@ -169,9 +170,10 @@ public class CarService {
     }
   }
 
-  public List<Car> retrieveCarsByMakeAndPriceRange(String make, double minPrice, double maxPrice) {
+  public List<Car> retrieveCarsByMakeAndPriceBetween(String make, BigDecimal minPrice,
+      BigDecimal maxPrice) {
     try {
-      return carRepository.findByMakeAndPriceRange(make, minPrice, maxPrice);
+      return carRepository.findByMakeAndPriceBetween(make, minPrice, maxPrice);
 
     } catch (Exception e) {
       String errorMessage = String.format(
@@ -182,10 +184,10 @@ public class CarService {
     }
   }
 
-  public List<Car> retrieveCarsByModelAndPriceRange(String model, double minPrice,
-      double maxPrice) {
+  public List<Car> retrieveCarsByModelAndPriceBetween(String model, BigDecimal minPrice,
+      BigDecimal maxPrice) {
     try {
-      return carRepository.findByModelAndPriceRange(model, minPrice, maxPrice);
+      return carRepository.findByModelAndPriceBetween(model, minPrice, maxPrice);
 
     } catch (Exception e) {
       String errorMessage = String.format(
@@ -196,10 +198,11 @@ public class CarService {
     }
   }
 
-  public List<Car> retrieveCarsByMakeModelAndPriceRange(String make, String model, double minPrice,
-      double maxPrice) {
+  public List<Car> retrieveCarsByMakeModelAndPriceBetween(String make, String model,
+      BigDecimal minPrice,
+      BigDecimal maxPrice) {
     try {
-      return carRepository.findByMakeAndModelAndPriceRange(make, model, minPrice, maxPrice);
+      return carRepository.findByMakeAndModelAndPriceBetween(make, model, minPrice, maxPrice);
 
     } catch (Exception e) {
       String errorMessage = String.format(

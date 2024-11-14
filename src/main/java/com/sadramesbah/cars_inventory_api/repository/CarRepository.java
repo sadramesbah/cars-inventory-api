@@ -1,6 +1,7 @@
 package com.sadramesbah.cars_inventory_api.repository;
 
 import com.sadramesbah.cars_inventory_api.entity.Car;
+import java.math.BigDecimal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,9 +18,9 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
   List<Car> findByColor(String color);
 
-  List<Car> findByPriceRange(double minPrice, double maxPrice);
+  List<Car> findByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice);
 
-  List<Car> findByMileageRange(int minMileage, int maxMileage);
+  List<Car> findByMileageBetween(int minMileage, int maxMileage);
 
   List<Car> findByMakeAndModel(String make, String model);
 
@@ -27,10 +28,10 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
   List<Car> findByMakeAndModelAndYear(String make, String model, int year);
 
-  List<Car> findByMakeAndPriceRange(String make, double minPrice, double maxPrice);
+  List<Car> findByMakeAndPriceBetween(String make, BigDecimal minPrice, BigDecimal maxPrice);
 
-  List<Car> findByModelAndPriceRange(String model, double minPrice, double maxPrice);
+  List<Car> findByModelAndPriceBetween(String model, BigDecimal minPrice, BigDecimal maxPrice);
 
-  List<Car> findByMakeAndModelAndPriceRange(String make, String model, double minPrice,
-      double maxPrice);
+  List<Car> findByMakeAndModelAndPriceBetween(String make, String model, BigDecimal minPrice,
+      BigDecimal maxPrice);
 }

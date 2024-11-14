@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "cars")
@@ -35,7 +36,7 @@ public class Car {
   private int mileage;
 
   @Column(name = "car_price", precision = 10, scale = 2, nullable = false)
-  private double price;
+  private BigDecimal price;
 
 
   // Default constructor
@@ -44,7 +45,7 @@ public class Car {
 
   // Parameterized constructor
   public Car(String vin, String make, String model, int year, String color, int mileage,
-      double price) {
+      BigDecimal price) {
     this.vin = vin;
     this.make = make;
     this.model = model;
@@ -107,11 +108,11 @@ public class Car {
     this.mileage = mileage;
   }
 
-  public double getPrice() {
+  public BigDecimal getPrice() {
     return price;
   }
 
-  public void setPrice(double price) {
+  public void setPrice(BigDecimal price) {
     this.price = price;
   }
 }
