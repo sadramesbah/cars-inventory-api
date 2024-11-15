@@ -29,7 +29,8 @@ Make sure to update database configuration in `application.properties` for your 
 spring.datasource.url=jdbc:mysql://localhost:3306/{database_name}
 spring.datasource.username={username}
 spring.datasource.password={password}
-spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.hibernate.ddl-auto=create-drop or validate
+server.port={desired_port}
 ```
 Use below SQL to create the table
 ```markdown
@@ -46,6 +47,7 @@ CREATE TABLE cars (
 ```
 
 ## API Endpoints
+requests should look like this: http://localhost:{server.port}/api/v1/cars
 
 - **Create a new car**
     - `POST /api/v1/car`
