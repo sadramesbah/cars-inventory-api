@@ -34,7 +34,6 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
-          distribution: 'adopt'
 
       - name: Wait for MySQL to be ready
         run: |
@@ -65,8 +64,13 @@ jobs:
           );
           EOF
 
-      - name: Build with Maven
-        run: mvn clean install
+      - name: Set environment variables
+        run: |
+          echo "SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/test_db" >> $GITHUB_ENV
+          echo "SPRING_DATASOURCE_USERNAME=root" >> $GITHUB_ENV
+          echo "SPRING_DATASOURCE_PASSWORD=root" >> $GITHUB_ENV
+          echo "SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop" >> $GITHUB_ENV
+          echo "SPRING_JPA_SHOW_SQL=true" >> $GITHUB_ENV
 
-      - name: Run tests
-        run: mvn test
+      - name: Build and run tests
+        run: mvn clean install test -Dspring.profiles.active=test
