@@ -1,39 +1,47 @@
-# cars-inventory-api
-Car dealership inventory management RESTful API
+# 🚘 Car Dealership Inventory Management API
 
-```markdown
-# Car Dealership Inventory Management API
+This project is a **RESTful API** designed to manage a car dealership's inventory. It allows users to perform CRUD operations on car records, including searching for cars based on various criteria such as make, model, year, color, mileage, and price range.
 
-This project is a RESTful API for managing a car dealership's inventory.
-It allows users to perform CRUD operations on car records,
-including searching for cars based on various criteria.
+## 🛠️ Technologies Used
 
-## Technologies Used
+- **Java**
+- **Spring Boot**
+- **Spring Data JPA**
+- **Hibernate**
+- **Maven**
+- **MySQL**
 
-- Java
-- Spring Boot
-- Spring Data JPA
-- Hibernate
-- Maven
-- MySQL
+## ✨ Key Features
 
-### Prerequisites
+- Perform CRUD operations on car records
+- Search for cars based on make, model, year, color, mileage, and price range
+- Efficient and scalable design using Spring Boot and Hibernate
 
-- Java 11 or higher
-- Maven
-- MySQL
-   ```
+## 🗂️ Project Structure
 
-Make sure to update database configuration in `application.properties` for your environment.
-```markdown
-spring.datasource.url=jdbc:mysql://localhost:3306/{database_name}
-spring.datasource.username={username}
-spring.datasource.password={password}
-spring.jpa.hibernate.ddl-auto=create-drop or validate
-server.port={desired_port}
-```
-Use below SQL to create the table
-```markdown
+- **Controller**: Handles HTTP requests related to car operations such as creating, retrieving, updating, and deleting records.
+- **Model**: Represents the car entity with attributes like VIN, make, model, year, color, mileage, and price.
+- **Repository**: Extends `JpaRepository` to provide CRUD operations for the `Car` entity.
+- **Service**: Provides business logic for car operations, including saving, retrieving, updating, and deleting car records.
+
+## ⚙️ Prerequisites
+
+- **Java 11** or higher
+- **Maven**
+- **MySQL**
+
+## 🚀 Getting Started
+
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/sadramesbah/car-dealership-inventory-management-api.git
+   cd car-dealership-inventory-management-api
+    ```
+  
+2. **Set up the database**:
+- create a database in MySQL
+- Use the following SQL to create the **cars** table:
+```sql
 CREATE TABLE cars (
     car_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     car_vin VARCHAR(17) NOT NULL,
@@ -45,85 +53,104 @@ CREATE TABLE cars (
     car_price DECIMAL(10, 2) NOT NULL
 );
 ```
+3. **Configure the application**
+- update the `application.properties` with your database credentials and other configurations.
 
-## API Endpoints
-requests should look like this: http://localhost:{server.port}/api/v1/cars
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/{database_name}
+spring.datasource.username={username}
+spring.datasource.password={password}
+spring.jpa.hibernate.ddl-auto=create-drop or validate
+server.port={desired_port}
+```
 
-- **Create a new car**
-    - `POST /api/v1/car`
-    - Request Body:
-      ```json
-      {
-        "vin": "1HGCM82633A004352",
-        "make": "Honda",
-        "model": "Accord",
-        "year": 2020,
-        "color": "Blue",
-        "mileage": 15000,
-        "price": 22000.00
-      }
-      ```
+4. **Build and run the application**
+```sh
+mvn clean install
+mvn spring-boot:run
+```
 
-- **Retrieve a car by ID**
-    - `GET /api/v1/car/{carId}`
+5. **Access the API**
+- The API will be available at: http://localhost:{server.port}/api/v1/cars
 
+## 📄 API Endpoints
 
-- **Retrieve all cars**
-    - `GET /api/v1/cars`
+🆕 **Create a new car**
+    
+- `POST /api/v1/car`
+- Request body:
+  ```json
+  {
+    "vin": "1HGCM82633A004352",
+    "make": "Honda",
+    "model": "Accord",
+    "year": 2020,
+    "color": "Blue",
+    "mileage": 15000,
+    "price": 22000.00
+  }
+  ```
 
-
-- **Update a car**
-    - `PUT /api/v1/car/{carId}`
-    - Request Body: same as the create request body
-
-
-- **Delete a car**
-    - `DELETE /api/v1/car/{carId}`
-
-
-- **Retrieve cars by make**
-    - `GET /api/v1/cars/make/{make}`
-
-
-- **Retrieve cars by model**
-    - `GET /api/v1/cars/model/{model}`
+🔎 **Retrieve a car by ID**
+- `GET /api/v1/car/{carId}`
 
 
-- **Retrieve cars by year**
-    - `GET /api/v1/cars/year/{year}`
+📋 **Retrieve all cars**
+- `GET /api/v1/cars`
 
 
-- **Retrieve cars by color**
-    - `GET /api/v1/cars/color/{color}`
+✏️ **Update a car**
+- `PUT /api/v1/car/{carId}`
+- Request body: same as the create request body
 
 
-- **Retrieve cars by price range**
-    - `GET /api/v1/cars/price/{minPrice}/{maxPrice}`
+❌ **Delete a car**
+- `DELETE /api/v1/car/{carId}`
 
 
-- **Retrieve cars by mileage range**
-    - `GET /api/v1/cars/mileage/{minMileage}/{maxMileage}`
+🔎 **Retrieve cars by make**
+- `GET /api/v1/cars/make/{make}`
 
 
-- **Retrieve cars by make and model**
-    - `GET /api/v1/cars/make/{make}/model/{model}`
+🔎 **Retrieve cars by model**
+- `GET /api/v1/cars/model/{model}`
 
 
-- **Retrieve cars by make and year**
-    - `GET /api/v1/cars/make/{make}/year/{year}`
+🔎 **Retrieve cars by year**
+- `GET /api/v1/cars/year/{year}`
 
 
-- **Retrieve cars by make, model, and year**
-    - `GET /api/v1/cars/make/{make}/model/{model}/year/{year}`
+🔎 **Retrieve cars by color**
+- `GET /api/v1/cars/color/{color}`
 
 
-- **Retrieve cars by make and price range**
-    - `GET /api/v1/cars/make/{make}/price/{minPrice}/{maxPrice}`
+🔎 **Retrieve cars by price range**
+- `GET /api/v1/cars/price/{minPrice}/{maxPrice}`
 
 
-- **Retrieve cars by model and price range**
-    - `GET /api/v1/cars/model/{model}/price/{minPrice}/{maxPrice}`
+🔎 **Retrieve cars by mileage range**
+- `GET /api/v1/cars/mileage/{minMileage}/{maxMileage}`
 
 
-- **Retrieve cars by make, model, and price range**
-    - `GET /api/v1/cars/make/{make}/model/{model}/price/{minPrice}/{maxPrice}`
+🔎 **Retrieve cars by make and model**
+- `GET /api/v1/cars/make/{make}/model/{model}`
+
+
+🔎 **Retrieve cars by make and year**
+- `GET /api/v1/cars/make/{make}/year/{year}`
+
+
+🔎 **Retrieve cars by make, model, and year**
+- `GET /api/v1/cars/make/{make}/model/{model}/year/{year}`
+
+
+🔎 **Retrieve cars by make and price range**
+- `GET /api/v1/cars/make/{make}/price/{minPrice}/{maxPrice}`
+
+
+🔎 **Retrieve cars by model and price range**
+- `GET /api/v1/cars/model/{model}/price/{minPrice}/{maxPrice}`
+
+
+🔎 **Retrieve cars by make, model, and price range**
+- `GET /api/v1/cars/make/{make}/model/{model}/price/{minPrice}/{maxPrice}`
