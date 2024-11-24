@@ -22,6 +22,7 @@ class CarDealershipInventoryManagementApplicationTests {
 
   @Test
   void contextLoads() {
+    assertThat(carService).isNotNull();
   }
 
   @Test

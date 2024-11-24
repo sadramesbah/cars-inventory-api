@@ -30,7 +30,7 @@ public class CarService {
           "Failed to save the car with ID: %d, Make: %s, Model: %s, VIN: %s. Error: %s",
           car.getId(), car.getMake(), car.getModel(), car.getVin(), e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -41,7 +41,7 @@ public class CarService {
     } catch (Exception e) {
       String errorMessage = String.format("Failed to retrieve all cars. Error: %s", e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -53,7 +53,7 @@ public class CarService {
       String errorMessage = String.format("Failed to retrieve car by ID: %d. Error: %s", id,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -65,7 +65,7 @@ public class CarService {
       String errorMessage = String.format("Failed to retrieve cars by Make: %s. Error: %s", make,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -77,7 +77,7 @@ public class CarService {
       String errorMessage = String.format("Failed to retrieve cars by Model: %s. Error: %s", model,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -89,7 +89,7 @@ public class CarService {
       String errorMessage = String.format("Failed to retrieve cars by Year: %d. Error: %s", year,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -101,7 +101,7 @@ public class CarService {
       String errorMessage = String.format("Failed to retrieve cars by Color: %s. Error: %s", color,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -114,7 +114,7 @@ public class CarService {
           "Failed to retrieve cars by Price Range: %.2f - %.2f. Error: %s", minPrice, maxPrice,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -127,7 +127,7 @@ public class CarService {
           "Failed to retrieve cars by Mileage Range: %d - %d. Error: %s", minMileage, maxMileage,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -140,7 +140,7 @@ public class CarService {
           "Failed to retrieve cars by Make: %s and Model: %s. Error: %s", make, model,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -153,7 +153,7 @@ public class CarService {
           "Failed to retrieve cars by Make: %s and Year: %d. Error: %s", make, year,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -166,7 +166,7 @@ public class CarService {
           "Failed to retrieve cars by Make: %s, Model: %s, and Year: %d. Error: %s", make, model,
           year, e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -180,7 +180,7 @@ public class CarService {
           "Failed to retrieve cars by Make: %s and Price Range: %.2f - %.2f. Error: %s", make,
           minPrice, maxPrice, e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -194,7 +194,7 @@ public class CarService {
           "Failed to retrieve cars by Model: %s and Price Range: %.2f - %.2f. Error: %s", model,
           minPrice, maxPrice, e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -209,7 +209,7 @@ public class CarService {
           "Failed to retrieve cars by Make: %s, Model: %s, and Price Range: %.2f - %.2f. Error: %s",
           make, model, minPrice, maxPrice, e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -239,7 +239,7 @@ public class CarService {
           "Failed to update car with ID: %d, Make: %s, Model: %s, VIN: %s. Error: %s",
           id, car.getMake(), car.getModel(), car.getVin(), e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
@@ -260,7 +260,7 @@ public class CarService {
       String errorMessage = String.format("Failed to delete car by ID: %d. Error: %s", id,
           e.getMessage());
       logger.error(errorMessage);
-      throw new RuntimeException(errorMessage);
+      throw new IllegalStateException(errorMessage);
     }
   }
 
