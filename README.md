@@ -34,8 +34,8 @@ This project is a **RESTful API** designed to manage a car dealership's inventor
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/sadramesbah/car-dealership-inventory-management-api.git
-   cd car-dealership-inventory-management-api
+   git clone https://github.com/sadramesbah/cars-inventory-api.git
+   cd cars-inventory-api
     ```
   
 2. **Set up the database**:
