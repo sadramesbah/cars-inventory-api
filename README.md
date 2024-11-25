@@ -2,6 +2,12 @@
 
 This project is a **RESTful API** designed to manage a car dealership's inventory. It allows users to perform CRUD operations on car records, including searching for cars based on various criteria such as make, model, year, color, mileage, and price range.
 
+## ✨ Key Features
+
+- Perform CRUD operations on car records
+- Search for cars based on make, model, year, color, mileage, and price range
+- Efficient and scalable design using Spring Boot and Hibernate
+
 ## 🛠️ Technologies Used
 
 - **Java**
@@ -10,12 +16,6 @@ This project is a **RESTful API** designed to manage a car dealership's inventor
 - **Hibernate**
 - **Maven**
 - **MySQL**
-
-## ✨ Key Features
-
-- Perform CRUD operations on car records
-- Search for cars based on make, model, year, color, mileage, and price range
-- Efficient and scalable design using Spring Boot and Hibernate
 
 ## 🗂️ Project Structure
 
