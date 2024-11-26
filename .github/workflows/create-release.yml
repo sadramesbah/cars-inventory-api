@@ -36,7 +36,8 @@ jobs:
       - name: Generate release notes
         id: generate_release_notes
         run: |
-          commits=$(git log --pretty=format:"%h %s" $(git describe --tags --abbrev=0)..HEAD)
+          latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+          commits=$(git log --pretty=format:"- %h %s" $latest_tag..HEAD)
           echo "release_notes=$commits" >> $GITHUB_ENV
 
       - name: Create new release
