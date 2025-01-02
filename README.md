@@ -1,4 +1,4 @@
-# 🚘 Car Dealership Inventory Management API
+# 🚘 Car Dealership Inventory Management API [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sadramesbah_cars-inventory-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sadramesbah_cars-inventory-api)
 
 This project is a **RESTful API** designed to manage a car dealership's inventory. It allows users to perform CRUD operations on car records, including searching for cars based on various criteria such as make, model, year, color, mileage, and price range.
 
